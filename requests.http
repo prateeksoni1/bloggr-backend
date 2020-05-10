@@ -1,0 +1,25 @@
+POST http://localhost:8000/api/v1/auth/signup HTTP/1.1
+Content-Type: application/json
+
+{
+    "firstName": "Prateek",
+    "lastName": "Soni",
+    "email": "p@p.com",
+    "password": "123456",
+    "blogType": "personal",
+    "tags": ["tech", "news"]
+}
+
+###
+
+POST http://localhost:8000/api/v1/auth/signin HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "p@p.com",
+    "password": "123456"
+}
+
+###
+GET http://localhost:8000/api/v1/auth/ HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYjgyYzJkNWViOWNmOWVkY2ZhY2JkZSIsImlhdCI6MTU4OTEyODQ3OCwiZXhwIjoxNTg5MTY0NDc4fQ.xMn6OC2CxSjzlnqV-gHvhhqfAb2iqBYuD9u1k0EutWM
