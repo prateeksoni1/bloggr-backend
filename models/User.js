@@ -2,18 +2,6 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
 const userSchema = new mongoose.Schema({
-  firstName: {
-    type: String,
-    required: true,
-    trim: true,
-    minlength: 3,
-  },
-  lastName: {
-    type: String,
-    required: true,
-    trim: true,
-    minlength: 3,
-  },
   email: {
     type: String,
     required: true,
@@ -27,21 +15,9 @@ const userSchema = new mongoose.Schema({
     required: true,
     minlength: 4,
   },
-  blogType: {
-    type: String,
-    enum: [
-      "personal",
-      "business",
-      "professional",
-      "niche",
-      "media",
-      "freelance",
-    ],
-    required: true,
-  },
-  tags: {
-    type: [String],
-    required: true,
+  profile: {
+    type: mongoose.Types.ObjectId,
+    ref: "profile",
   },
 });
 

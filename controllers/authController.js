@@ -26,15 +26,11 @@ exports.verifyToken = (req, res, next) => {
 };
 
 exports.signupController = async (req, res) => {
-  const { firstName, lastName, email, password, blogType, tags } = req.body;
+  const { email, password } = req.body;
   try {
     const user = new User({
-      firstName,
-      lastName,
       email,
       password,
-      blogType,
-      tags,
     });
     await user.save();
 
