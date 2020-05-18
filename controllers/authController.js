@@ -2,8 +2,34 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+exports.getUser = async (req, res) => {
+  const token = req.headers["authorization"];
+
+  if (!token) {
+    return res.status(401).json({
+      success: false,
+      message: "No auth token found",
+    });
+  }
+  try {
+    const payload = jwt.verify(token, process.env.JWT_KEY);
+    const { id } = payload;
+    const user = await User.findById(id);
+    return res.status(200).json({
+      success: true,
+      user,
+      token,
+    });
+  } catch (err) {
+    return res.status(401).json({
+      success: false,
+      message: "Invalid Token",
+      error: err.toString(),
+    });
+  }
+};
+
 exports.verifyToken = (req, res, next) => {
-  console.log(req);
   const token = req.headers["authorization"];
 
   if (!token) {

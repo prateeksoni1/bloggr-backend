@@ -3,10 +3,11 @@ const {
   signupController,
   signinController,
   verifyToken,
+  getUser,
 } = require("../controllers/authController");
 
 router.post("/signup", signupController);
 router.post("/signin", signinController);
-router.get("/", verifyToken);
+router.get("/", getUser);
 
 module.exports = router;
