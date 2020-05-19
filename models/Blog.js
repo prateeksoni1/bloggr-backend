@@ -2,7 +2,11 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
 const blogSchema = new mongoose.Schema({
-  blogType: {
+  name: {
+    type: String,
+    required: true,
+  },
+  type: {
     type: String,
     enum: [
       "personal",
