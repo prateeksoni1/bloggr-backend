@@ -39,6 +39,10 @@ exports.createProfile = async (req, res) => {
   });
 
   await profile.save();
+
+  user.profile = profile._id;
+  await user.save();
+
   return res.status(201).json({
     success: true,
     profile,

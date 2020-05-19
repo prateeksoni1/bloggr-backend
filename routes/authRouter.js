@@ -2,7 +2,6 @@ const router = require("express").Router();
 const {
   signupController,
   signinController,
-  verifyToken,
   getUser,
 } = require("../controllers/authController");
 
