@@ -53,10 +53,12 @@ exports.verifyToken = (req, res, next) => {
 
 exports.signupController = async (req, res) => {
   const { email, password } = req.body;
+
+  const hashedPassword = await bcrypt.hash(password, 12);
   try {
     const user = new User({
       email,
-      password,
+      password: hashedPassword,
     });
     await user.save();
 
@@ -86,8 +88,10 @@ exports.signinController = async (req, res) => {
       });
     }
 
-    const isValid = await bcrypt.compare(password, existingUser.password);
+    console.log({ body: req.body, existingUser });
 
+    const isValid = await bcrypt.compare(password, existingUser.password);
+    console.log(isValid);
     if (!isValid) {
       return res.status(403).json({
         success: false,
