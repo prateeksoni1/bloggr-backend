@@ -14,7 +14,7 @@ exports.getUser = async (req, res) => {
   try {
     const payload = jwt.verify(token, process.env.JWT_KEY);
     const { id } = payload;
-    const user = await User.findById(id);
+    const user = await User.findById(id).populate({ path: "profile" });
     return res.status(200).json({
       success: true,
       user,
