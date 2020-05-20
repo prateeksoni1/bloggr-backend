@@ -79,7 +79,9 @@ exports.signinController = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ email }).populate({
+      path: "profile",
+    });
 
     if (!existingUser) {
       return res.status(404).json({
