@@ -14,7 +14,10 @@ exports.getUser = async (req, res) => {
   try {
     const payload = jwt.verify(token, process.env.JWT_KEY);
     const { id } = payload;
-    const user = await User.findById(id).populate({ path: "profile" });
+    const user = await User.findById(id).populate({
+      path: "profile",
+      populate: { path: "blog" },
+    });
     return res.status(200).json({
       success: true,
       user,
@@ -89,8 +92,6 @@ exports.signinController = async (req, res) => {
         message: "User not found",
       });
     }
-
-    console.log({ body: req.body, existingUser });
 
     const isValid = await bcrypt.compare(password, existingUser.password);
     console.log(isValid);

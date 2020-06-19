@@ -1,11 +1,13 @@
-import User from "../models/User";
-import Profile from "../models/Profile";
+const User = require("../models/User");
+const Profile = require("../models/Profile");
 
 const Blog = require("../models/Blog");
 
-export const createBlog = async (req, res) => {
+exports.createBlog = async (req, res) => {
   const { name, type, description, tags } = req.body;
   const { user: userId } = req;
+
+  tags = tags.map((tag) => tag.trim());
 
   try {
     const user = await User.findById(userId);
