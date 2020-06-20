@@ -25,6 +25,14 @@ const blogSchema = new mongoose.Schema({
     type: [String],
     required: true,
   },
+  posts: {
+    type: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "post",
+      },
+    ],
+  },
 });
 
 module.exports = mongoose.model("blog", blogSchema);
