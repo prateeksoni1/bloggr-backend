@@ -2,6 +2,36 @@ const Post = require("../models/Post");
 const User = require("../models/User");
 const Blog = require("../models/Blog");
 
+exports.getPosts = async (req, res) => {
+  const { user: userId } = req;
+
+  try {
+    const user = await User.findById(userId).populate({
+      path: "profile",
+      populate: {
+        path: "blog",
+        populate: { path: "posts", select: "-content" },
+      },
+    });
+
+    const posts = user.profile.blog.posts;
+
+    return res.status(201).json({
+      success: true,
+      data: {
+        count: posts.length,
+        posts,
+      },
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error: err.toString(),
+    });
+  }
+};
+
 exports.createPost = async (req, res) => {
   const { title, subtitle, content } = req.body;
   const { user: userId } = req;
