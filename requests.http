@@ -23,3 +23,6 @@ Content-Type: application/json
 ###
 GET http://localhost:8000/api/v1/auth/ HTTP/1.1
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYjgyYzJkNWViOWNmOWVkY2ZhY2JkZSIsImlhdCI6MTU4OTEyODQ3OCwiZXhwIjoxNTg5MTY0NDc4fQ.xMn6OC2CxSjzlnqV-gHvhhqfAb2iqBYuD9u1k0EutWM
+
+###
+GET https://health-api.com/api/v1/covid-19/all HTTP/1.1

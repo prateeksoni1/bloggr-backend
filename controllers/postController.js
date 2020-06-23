@@ -4,7 +4,6 @@ const Blog = require("../models/Blog");
 
 exports.getPost = async (req, res) => {
   const { id: postId } = req.params;
-
   try {
     const post = await Post.findById(postId);
 

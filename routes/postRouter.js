@@ -7,7 +7,7 @@ const {
 } = require("../controllers/postController");
 
 router.get("/", verifyToken, getPosts);
-router.get("/:id", verifyToken, getPost);
+router.get("/:id", getPost);
 router.post("/", verifyToken, createPost);
 
 module.exports = router;
